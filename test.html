@@ -12,12 +12,11 @@
         <h1 id="test-title-display" class="text-center mb-4"></h1>
         <!-- 1. 이름 입력 화면 -->
         <div id="name-entry-screen">
-            <h2 class="text-center">제시어</h2>
             <div class="mb-3 mt-4">
-                <label for="student-name" class="form-label">이름을 입력하세요</label>
-                <input type="text" class="form-control" id="student-name" placeholder="홍길동">
+                <label for="student-name" class="form-label"></label>
+                <input type="text" class="form-control" id="student-name">
             </div>
-            <button id="start-test-btn" class="btn btn-primary w-100">시험 시작</button>
+            <button id="start-test-btn" class="btn btn-primary w-100"></button>
         </div>
 
         <!-- 2. 시험 진행 화면 (초기에는 숨김) -->
@@ -32,37 +31,37 @@
                 </div>
             </div>
             <div class="my-3">
-                <input type="text" class="form-control" id="english-answer" placeholder="여기에 답을 입력하세요">
+                <input type="text" class="form-control" id="english-answer">
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button id="prev-word-btn" class="btn btn-secondary me-md-2">이전</button>
-                <button id="next-word-btn" class="btn btn-primary">다음</button>
+                <button id="prev-word-btn" class="btn btn-secondary me-md-2"></button>
+                <button id="next-word-btn" class="btn btn-primary"></button>
             </div>
         </div>
 
         <!-- 3. 결과 화면 (초기에는 숨김) -->
         <div id="result-screen" style="display: none;">
-            <h2 class="text-center">시험 결과</h2>
+            <h2 class="text-center"></h2>
             <div class="card text-center mt-4">
                 <div class="card-header">
                     <h4 id="final-student-name"></h4>
                 </div>
                 <div class="card-body">
-                    <p class="display-5">총점</p>
+                    <p class="display-5"></p>
                     <h3 id="score-display" class="display-3"></h3>
                 </div>
             </div>
             <div class="mt-4 d-grid gap-2">
-                 <a href="index.html" class="btn btn-primary">메인으로 돌아가기</a>
-                 <button id="retry-test-btn" class="btn btn-outline-secondary">다시 풀기</button>
+                 <a href="index.html" class="btn btn-primary"></a>
+                 <button id="retry-test-btn" class="btn btn-outline-secondary"></button>
             </div>
         </div>
 
          <!-- 시험 데이터가 없을 경우 -->
         <div id="no-test-data-screen" class="text-center" style="display: none;">
-            <h2>잘못된 접근입니다.</h2>
-            <p>선생님께 받은 시험 링크로 접속해주세요.</p>
-            <a href="index.html" class="btn btn-primary">메인으로 돌아가기</a>
+            <h2></h2>
+            <p></p>
+            <a href="index.html" class="btn btn-primary"></a>
         </div>
     </div>
 

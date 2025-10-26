@@ -12,24 +12,24 @@
 
 
         <div class="text-center mb-4">
-            <h2>시험 만들기</h2>
-            <p>단어와 뜻을 입력하고, 수정을 위한 비밀번호를 설정하세요.</p>
+            <h2></h2>
+            <p></p>
         </div>
 
         <div class="mb-3">
-            <label for="test-title" class="form-label">시험 제목</label>
-            <input type="text" class="form-control" id="test-title" placeholder="예: DTM 1과 단어 시험">
+            <label for="test-title" class="form-label"></label>
+            <input type="text" class="form-control" id="test-title">
         </div>
 
         <div id="word-list" class="mb-3">
             <div class="row">
                 <div class="col-md-6">
-                    <label class="form-label">제시어</label>
-                    <textarea id="korean-words-input" class="form-control" rows="10" placeholder="한 줄에 하나씩 입력하세요"></textarea>
+                    <label class="form-label" for="korean-words-input"></label>
+                    <textarea id="korean-words-input" class="form-control" rows="10"></textarea>
                 </div>
                 <div class="col-md-6">
-                    <label class="form-label">답</label>
-                    <textarea id="english-words-input" class="form-control" rows="10" placeholder="한 줄에 하나씩 입력하세요"></textarea>
+                    <label class="form-label" for="english-words-input"></label>
+                    <textarea id="english-words-input" class="form-control" rows="10"></textarea>
                 </div>
             </div>
         </div>
@@ -38,34 +38,34 @@
             <div class="col-6">
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" role="switch" id="random-order-switch">
-                    <label class="form-check-label" for="random-order-switch">단어 순서 섞기</label>
+                    <label class="form-check-label" for="random-order-switch"></label>
                 </div>
             </div>
             <div class="col-6">
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" role="switch" id="language-switch">
-                    <label class="form-check-label" for="language-switch">제시어-답 바꾸기</label>
+                    <label class="form-check-label" for="language-switch"></label>
                 </div>
             </div>
         </div>
 
         <div class="mb-3">
-            <label for="password" class="form-label">수정용 비밀번호</label>
-            <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력하지 않으면 수정이 불가합니다.">
+            <label for="password" class="form-label"></label>
+            <input type="password" class="form-control" id="password">
         </div>
 
-        <button id="generate-link-btn" class="btn btn-primary btn-lg w-100">시험 링크 생성</button>
+        <button id="generate-link-btn" class="btn btn-primary btn-lg w-100"></button>
 
         <div id="generated-link-container" class="mt-4" style="display: none;">
-            <h5>생성된 시험 링크:</h5>
+            <h5></h5>
             <div class="input-group">
                 <input type="text" id="generated-link" class="form-control" readonly>
-                <button id="copy-link-btn" class="btn btn-outline-success">복사</button>
+                <button id="copy-link-btn" class="btn btn-outline-success"></button>
             </div>
         </div>
         
         <div class="mt-4">
-            <a href="index.html" class="btn btn-link">메인으로 돌아가기</a>
+            <a href="index.html" class="btn btn-link"></a>
         </div>
     </div>
 
