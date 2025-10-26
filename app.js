@@ -155,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const koreanWords = testData.words.map(w => w.k).join('\n');
                 const englishWords = testData.words.map(w => w.e).join('\n');
 
+                document.getElementById('test-title').value = testData.title || '';
                 document.getElementById('korean-words-input').value = koreanWords;
                 document.getElementById('english-words-input').value = englishWords;
                 document.getElementById('password').value = testData.p || '';
@@ -184,11 +185,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const words = koreanLines.map((k, i) => ({ k: k, e: englishLines[i] }));
 
+            const title = document.getElementById('test-title').value;
             const password = document.getElementById('password').value;
             const randomOrder = document.getElementById('random-order-switch').checked;
             const languageSwitch = document.getElementById('language-switch').checked;
 
             const testData = {
+                title: title,
                 words: words,
                 p: password,
                 random: randomOrder,
@@ -240,6 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const testData = JSON.parse(decodedString);
                 if (testData.words && testData.words.length > 0) {
                     testConfig = testData;
+                    document.getElementById('test-title-display').textContent = testData.title || '단어 시험';
                     nameEntryScreen.style.display = 'block';
                 } else {
                     throw new Error('No words found');
