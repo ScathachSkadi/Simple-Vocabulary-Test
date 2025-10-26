@@ -15,8 +15,26 @@
         </div>
 
         <div class="d-grid gap-3 col-6 mx-auto mt-5">
-            <a href="teacher.html" class="btn btn-primary btn-lg">시험 만들기 (선생님)</a>
-            <a href="test.html" class="btn btn-secondary btn-lg">시험 보기 (학생)</a>
+            <a href="teacher.html" class="btn btn-primary btn-lg">시험 만들기</a>
+            <button id="edit-test-btn" class="btn btn-secondary btn-lg">기존 시험 수정하기</button>
+            <button id="view-results-btn" class="btn btn-info btn-lg">학생 결과 확인하기</button>
+        </div>
+
+        <div id="edit-test-section" class="mt-5 p-4 bg-light rounded-3" style="display: none;">
+            <h4>기존 시험 수정하기</h4>
+            <div class="input-group">
+                <input type="text" id="load-link-input" class="form-control" placeholder="수정할 시험 링크를 여기에 붙여넣으세요">
+                <button id="load-link-btn" class="btn btn-outline-secondary">시험 불러오기</button>
+            </div>
+        </div>
+
+        <div id="view-results-section" class="mt-5 p-4 bg-light rounded-3" style="display: none;">
+            <h4>학생 결과 확인하기</h4>
+            <div class="input-group">
+                <input type="text" id="results-link-input" class="form-control" placeholder="결과를 확인할 시험 링크를 여기에 붙여넣으세요">
+                <button id="load-results-btn" class="btn btn-outline-info">결과 불러오기</button>
+            </div>
+            <div id="results-container" class="mt-4" style="display: none;"></div>
         </div>
     </div>
 
