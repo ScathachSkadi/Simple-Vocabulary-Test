@@ -186,9 +186,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert(t.invalidLink);
                 return;
             }
+            
             try {
-                const decodedString = decodeURIComponent(atob(hash));
-                const testData = JSON.parse(decodedString);
+                const decodedString = atob(hash);
+                const parsedData = JSON.parse(decodedString);
+                
+                const testData = {
+                    p: parsedData.p || ''
+                };
+                
                 if (testData.p) {
                     const enteredPassword = prompt(t.enterPasswordForResults);
                     if (enteredPassword !== testData.p) {
@@ -196,6 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         return;
                     }
                 }
+                
                 const allResults = JSON.parse(localStorage.getItem('testResults') || '[]');
                 const testResults = allResults.filter(r => r.testId === '#' + hash);
                 const resultsContainer = document.getElementById('results-container');
@@ -284,10 +291,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const copyLinkBtn = document.getElementById('copy-link-btn');
 
         const hash = window.location.hash.substring(1);
+        
         if (hash) {
             try {
-                const decodedString = decodeURIComponent(atob(hash));
-                const testData = JSON.parse(decodedString);
+                const decodedString = atob(hash);
+                const parsedData = JSON.parse(decodedString);
+                // Convert optimized format to full format
+                const testData = {
+                    title: parsedData.t || '',
+                    words: parsedData.w.map(w => Array.isArray(w) ? { k: w[0], e: w[1] } : w),
+                    p: parsedData.p || '',
+                    random: parsedData.r || false,
+                    lang: parsedData.l || false
+                };
+                
                 if (testData.p) {
                     const enteredPassword = prompt(t.enterPasswordForEdit);
                     if (enteredPassword !== testData.p) {
@@ -324,9 +341,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const password = document.getElementById('password').value;
             const randomOrder = document.getElementById('random-order-switch').checked;
             const languageSwitch = document.getElementById('language-switch').checked;
-            const testData = { title: title, words: words, p: password, random: randomOrder, lang: languageSwitch };
+            
+            // Optimize data structure - only include non-default values
+            const testData = {};
+            if (title) testData.t = title;
+            testData.w = words.map(w => [w.k, w.e]); // Simplified word format
+            if (password) testData.p = password;
+            if (randomOrder) testData.r = true;
+            if (languageSwitch) testData.l = true;
+            
+            // Compress JSON string by removing spaces
             const jsonString = JSON.stringify(testData);
-            const encodedData = btoa(encodeURIComponent(jsonString));
+            const encodedData = btoa(jsonString);
+            
             const baseUrl = window.location.href.split('?')[0].split('#')[0].replace('teacher.html', 'test.html');
             const finalUrl = `${baseUrl}?lang=${lang}#${encodedData}`;
             document.getElementById('generated-link').value = finalUrl;
@@ -371,14 +398,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function initializeTest() {
             const hash = window.location.hash.substring(1);
+            
             if (!hash) {
                 nameEntryScreen.style.display = 'none';
                 noTestDataScreen.style.display = 'block';
                 return;
             }
+            
             try {
-                const decodedString = decodeURIComponent(atob(hash));
-                const testData = JSON.parse(decodedString);
+                const decodedString = atob(hash);
+                const parsedData = JSON.parse(decodedString);
+                // Convert optimized format to full format
+                const testData = {
+                    title: parsedData.t || '',
+                    words: parsedData.w.map(w => Array.isArray(w) ? { k: w[0], e: w[1] } : w),
+                    random: parsedData.r || false,
+                    lang: parsedData.l || false
+                };
+                
                 if (testData.words && testData.words.length > 0) {
                     testConfig = testData;
                     document.getElementById('test-title-display').textContent = testData.title || t.wordTestDefault;
@@ -461,11 +498,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (isCorrect) score++;
                 return { question: word.k, answer: word.e, userAnswer: userAnswers[index], isCorrect: isCorrect };
             });
+            
+            const testIdForResults = window.location.hash;
+            
             const testResult = {
                 studentName: studentName,
                 score: `${score} / ${words.length}`,
                 results: results,
-                testId: window.location.hash,
+                testId: testIdForResults,
                 timestamp: new Date().toISOString()
             };
             let allResults = JSON.parse(localStorage.getItem('testResults') || '[]');
